@@ -7,6 +7,7 @@ mediaType:
 types:
   Order: !include datatypes/Order.raml
   OrderItem: !include datatypes/OrderItem.raml
+  OrderRequest: !include datatypes/OrderRequest.raml
   ErrorMessage: !include datatypes/ErrorMessage.raml
 
 resourceTypes:
@@ -25,6 +26,8 @@ traits:
           
 /orders:
  type: collection
+ post:
+  
    
  get:
    is: [Pageable]
