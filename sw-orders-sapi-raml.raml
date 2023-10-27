@@ -9,49 +9,25 @@ types:
   OrderItem: !include datatypes/OrderItem.raml
   ErrorMessage: !include datatypes/ErrorMessage.raml
 
+resourceTypes:
+  collection: !include resourceTypes/collection.raml
+
+traits:
+  Pageable: !include traits/Pageable.raml
 
 /customers:
   /{id}:
-    /orders:    
+    /orders: 
+      type: collection
+           
       get:
-        responses:
-          200:
-           body:
-             type: Order[]
-         
-          500: 
-           body:
-             type: ErrorMessage 
-             example:
-               {
-                "status": "500",                
-                "message": "There was some server side problem. Please try later"                
-                }
+    
+          
 /orders:
+ type: collection
+   
  get:
-   queryParameters:
-    page:
-      type: integer
-      default: 1
-      minimum: 1
-      required: false
-    pageSize:
-      type: integer
-      default: 10
-      minimum: 10
-      required: false
+   is: [Pageable]
      
-   responses:
-     200:
-      body:
-        type: Order[]
-        
-     500: 
-       body:
-         type: ErrorMessage
-         example:
-               {
-                "status": "500",                
-                "message": "There was some server side problem. Please try later"                
-                }
-       
+     
+   
