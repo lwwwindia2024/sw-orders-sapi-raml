@@ -12,6 +12,7 @@ types:
 
 resourceTypes:
   collection: !include resourceTypes/collection.raml
+  member: !include resourceTypes/member.raml
 
 traits:
   Pageable: !include traits/Pageable.raml
@@ -26,11 +27,15 @@ traits:
           
 /orders:
  type: collection
- post:
-  
-   
+ post:   
  get:
    is: [Pageable]
+ /{id}:
+   type: member     
+   get:
+   delete:
+    
+     
      
      
    
