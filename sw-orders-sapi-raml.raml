@@ -1,2 +1,29 @@
 #%RAML 1.0
 title: sw-orders-sapi-raml
+baseUri: http://localhost:8081
+mediaType: 
+- application/json
+
+types:
+  Order: !include datatypes/Order.raml
+  OrderItem: !include datatypes/OrderItem.raml
+  ErrorMessage: !include datatypes/ErrorMessage.raml
+
+
+/customers:
+  /{id}:
+    /orders:    
+      get:
+        responses:
+          200:
+           body:
+             type: Order[]
+         
+          500: 
+           body:
+             type: ErrorMessage 
+             example:
+               {
+                "status": "500",                
+                "message": "There was some server side problem. Please try later"                
+                }
