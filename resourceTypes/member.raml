@@ -42,6 +42,10 @@ delete?:
       body:
         application/json:
           type: !include ../datatypes/ErrorMessage.raml
+    500:
+      body:
+        application/json:
+          type: !include ../datatypes/ErrorMessage.raml     
 put?:
   description: Update a specific <<resourcePathName | !singularize>>  info 
   displayName: Update a/an <<resourcePathName | !singularize>> by <<resourcePathName | !singularize>> ID
