@@ -7,48 +7,23 @@ mediaType:
 types:
   Order: !include datatypes/Order.raml
   OrderItem: !include datatypes/OrderItem.raml
-  OrderItemRequest: !include datatypes/OrderItemRequest.raml
-  OrderRequest: !include datatypes/OrderRequest.raml
   ErrorMessage: !include datatypes/ErrorMessage.raml
 
-resourceTypes:
-  collection: !include resourceTypes/collection.raml
-  member: !include resourceTypes/member.raml
-
-traits:
-  Pageable: !include traits/Pageable.raml
 
 /customers:
   /{id}:
-    /orders: 
-      type: collection
-           
+    /orders:    
       get:
-    
-          
-/orders:
- type: collection
- post:   
- get:
-   is: [Pageable]
- /{id}:
-   type: member     
-   get:
-   delete:
-   /orderItems:
-     type: collection
-     get:
-       responses:
-         404:
+        responses:
+          200:
            body:
-             type: ErrorMessage
-     post:
-       responses:
-         404:
-           body:
-             type: ErrorMessage
-     /{orderItemId}:
-       type: member
+             type: Order[]
          
-       get:
-       delete:
+          500: 
+           body:
+             type: ErrorMessage 
+             example:
+               {
+                "status": "500",                
+                "message": "There was some server side problem. Please try later"                
+                }
